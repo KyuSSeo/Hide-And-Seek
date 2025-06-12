@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public enum GameState { Preview, Playing, End }
 
 public class GameManager : MonoBehaviour
 {
