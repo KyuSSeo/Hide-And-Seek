@@ -3,16 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
+public enum GameState { Preview, Playing, End }
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public GameState state = GameState.Preview;
+
+    private int score = 0;
+    private int fail = 0;
+
+    private void Awake() => Init();
+
+    private void Init()
+    {
+        Instance = this;
+    }
     public void AddScore()
     {
-        Debug.Log("점수 증가");
+        score++;
+        CheckEndCondition();
     }
 
     public void FailAttempt()
     {
-        Debug.Log("기회 차감");
+        fail++;
+        CheckEndCondition();
+    }
+
+    private void CheckEndCondition()
+    {
+        if (score >= 3)
+        {
+            state = GameState.End;
+            Debug.Log("승리!");
+        }
+        else if (fail >= 3)
+        {
+            state = GameState.End;
+            Debug.Log("패배!");
+        }
     }
 }
