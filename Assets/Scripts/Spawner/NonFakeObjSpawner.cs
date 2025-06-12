@@ -7,6 +7,9 @@ public class NonFakeObjSpawner : MonoBehaviour
     [SerializeField] public GameObject NonFakeObjPrefab;
     [SerializeField] private BoxCollider SpawnerArea;
 
+    // 게임 메니저의 상태 State를 참조하여 상태에 따른 생성 시 프리팹 진위여부 결정
+
+
     private void Awake() => Init();
 
     private void Init()
@@ -36,7 +39,7 @@ public class NonFakeObjSpawner : MonoBehaviour
         return SpawnPos;
     }
 
-
+    //  코루틴으로 생성하는게 맞나?
     private IEnumerator RandomRespawnCoroutine()
     {
         
