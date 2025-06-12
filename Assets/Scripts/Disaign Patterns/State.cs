@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State : MonoBehaviour
+public abstract class State : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public virtual void Enter()
     {
-        
+        AddListeners();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Exit()
     {
-        
+        RemoveListeners();
+    }
+
+    protected virtual void OnDestroy()
+    {
+        RemoveListeners();
+    }
+    protected virtual void AddListeners()
+    {
+
+    }
+    protected virtual void RemoveListeners()
+    {
+
     }
 }
