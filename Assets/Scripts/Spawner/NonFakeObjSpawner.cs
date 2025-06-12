@@ -6,12 +6,12 @@ public class NonFakeObjSpawner : MonoBehaviour
 {
     [SerializeField] public GameObject NonFakeObjPrefab;
     [SerializeField] private BoxCollider SpawnerArea;
-
+    private int count = 0;
     private void Awake() => Init();
 
     private void Init()
     {
-        SpawnerArea = NonFakeObjPrefab.GetComponent<BoxCollider>();
+        SpawnerArea = SpawnerArea.GetComponent<BoxCollider>();
     }
 
     private void Start()
@@ -30,20 +30,25 @@ public class NonFakeObjSpawner : MonoBehaviour
         range_x = Random.Range((range_x/2) * -1, range_x/2); 
         range_z = Random.Range((range_z / 2) * -1, range_z / 2);
 
-        Vector3 randomPos = new Vector3(range_x, 0, range_z);
+        Vector3 randomPos = new Vector3(range_x, 1, range_z);
 
-        Vector3 SpawnPos = pos + randomPos;
+        Vector3 SpawnPos = randomPos;
         return SpawnPos;
     }
 
 
     private IEnumerator RandomRespawn_Coroutine()
     {
+        
         while (true)
         {
+            if (count == 5)
+                yield return false;
             yield return new WaitForSeconds(1f);
+            Vector3 pos = SetRandomPos();
+            Instantiate(NonFakeObjPrefab, pos, Quaternion.identity);
+            count++;
 
-            GameObject instantCapsul = Instantiate(NonFakeObjPrefab, SetRandomPos(), Quaternion.identity);
         }
     }
 }
