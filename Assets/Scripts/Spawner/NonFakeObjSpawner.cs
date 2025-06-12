@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstObjSpawner : MonoBehaviour
+public class NonFakeObjSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject NonFakeObjPrefab;
+    private List<GameObject> NonFakeObjects;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
