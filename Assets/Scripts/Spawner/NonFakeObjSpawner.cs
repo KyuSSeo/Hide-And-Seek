@@ -6,7 +6,7 @@ public class NonFakeObjSpawner : MonoBehaviour
 {
     [SerializeField] public GameObject NonFakeObjPrefab;
     [SerializeField] private BoxCollider SpawnerArea;
-    private int count = 0;
+
     private void Awake() => Init();
 
     private void Init()
@@ -16,7 +16,7 @@ public class NonFakeObjSpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(RandomRespawn_Coroutine());
+        StartCoroutine(RandomRespawnCoroutine());
     }
 
     //  랜덤한 좌표를 반환하는 함수
@@ -37,18 +37,20 @@ public class NonFakeObjSpawner : MonoBehaviour
     }
 
 
-    private IEnumerator RandomRespawn_Coroutine()
+    private IEnumerator RandomRespawnCoroutine()
     {
         
         while (true)
         {
-            if (count == 5)
-                yield return false;
             yield return new WaitForSeconds(1f);
             Vector3 pos = SetRandomPos();
-            Instantiate(NonFakeObjPrefab, pos, Quaternion.identity);
-            count++;
+            GameObject obj = Instantiate(NonFakeObjPrefab, pos, Quaternion.identity);
 
+            FakeObject fakeObj = obj.GetComponent<FakeObject>();
+            if (fakeObj != null)
+            {
+                fakeObj.isFake = false;
+            }
         }
     }
 }
