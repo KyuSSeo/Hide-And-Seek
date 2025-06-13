@@ -3,24 +3,14 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private GameObject xrPrefab;
-
-    private GameObject xrInstance;
-
     //  상태
     public GameState State { get; private set; } = GameState.GameStart;
-    public ScoreManager Score { get; set; }
     //  점수
-
+    public ScoreManager Score { get; set; }
 
     private void Awake()
     {
         SingletonInit();
-        if (xrInstance == null && xrPrefab != null)
-        {
-            xrInstance = Instantiate(xrPrefab);
-            DontDestroyOnLoad(xrInstance);
-        }
     }
 
     public void ChangeGameState(GameState newState)
