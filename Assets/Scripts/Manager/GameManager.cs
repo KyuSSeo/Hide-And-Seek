@@ -4,29 +4,33 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-    public GameState state = GameState.GameStart;
 
+    //  상태
+    public GameState State { get; private set; } = GameState.GameStart;
+    
+    //  점수
     private int score = 0;
     private int fail = 0;
 
-    private void Awake() => Init();
-
-    private void Init()
+    private void Start()
     {
-        Instance = this;
+        ChangeState(GameState.Preview);
     }
+
+
     public void AddScore()
     {
         score++;
+        Debug.Log($"점수: {score} 점");
         CheckEndCondition();
     }
 
     public void FailAttempt()
     {
         fail++;
+        Debug.Log($"실패 : {fail} 번");
         CheckEndCondition();
     }
 
@@ -34,13 +38,17 @@ public class GameManager : MonoBehaviour
     {
         if (score >= 3)
         {
-            state = GameState.End;
+            ChangeState(GameState.End);
             Debug.Log("승리!");
         }
         else if (fail >= 3)
         {
-            state = GameState.End;
+            ChangeState(GameState.End);
             Debug.Log("패배!");
         }
+    }
+    public void ChangeState(GameState state)
+    {
+
     }
 }
