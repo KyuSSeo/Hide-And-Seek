@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class NonFakeObjSpawner : MonoBehaviour
 {
+    #region SerializeField
     [SerializeField] private GameObject nonFakeObjPrefab;
     [SerializeField] private int _poolSize = 10;
     [SerializeField] private BoxCollider spawnerArea;
+    #endregion
+
 
     private ObjectPool _objectPool;
-
+    #region MonoBehaviour
     private void Awake()
     {
         Init();
     }
-
-    private void Init()
-    {
-        if (spawnerArea == null)
-            spawnerArea = GetComponent<BoxCollider>();
-
-        _objectPool = new ObjectPool(_poolSize, nonFakeObjPrefab, gameObject);
-    }
-
     private void Start()
     {
         SpawnAllNonFakeObjects();
@@ -31,7 +25,15 @@ public class NonFakeObjSpawner : MonoBehaviour
     {
         _objectPool?.DestroyAll();
     }
+    #endregion
 
+    private void Init()
+    {
+        if (spawnerArea == null)
+            spawnerArea = GetComponent<BoxCollider>();
+
+        _objectPool = new ObjectPool(_poolSize, nonFakeObjPrefab, gameObject);
+    }
 
     // 랜덤 위치 반환
     private Vector3 GetRandomPositionInArea()
