@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 
 public class GameManager : Singleton<GameManager>
@@ -9,7 +6,7 @@ public class GameManager : Singleton<GameManager>
 
     //  상태
     public GameState State { get; private set; } = GameState.GameStart;
-    
+
     //  점수
     private int score = 0;
     private int fail = 0;
@@ -34,6 +31,7 @@ public class GameManager : Singleton<GameManager>
         CheckEndCondition();
     }
 
+    //  종료 조건 확인
     private void CheckEndCondition()
     {
         if (score >= 3)
@@ -47,8 +45,28 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("패배!");
         }
     }
+
     public void ChangeState(GameState state)
     {
+        State = state;
 
+        switch (state)
+        {
+            case GameState.GameStart:
+                Debug.Log("게임 시작");
+                break;
+
+            case GameState.Preview:
+                Debug.Log("사전 탐색 시작");
+                break;
+
+            case GameState.Playing:
+                Debug.Log("탐색 시작");
+                break;
+
+            case GameState.End:
+                Debug.Log("게임 종료");
+                break;
+        }
     }
 }
