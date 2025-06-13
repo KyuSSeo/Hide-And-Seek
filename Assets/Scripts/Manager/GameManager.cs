@@ -9,10 +9,9 @@ public class GameManager : Singleton<GameManager>
 
     //  상태
     public GameState State { get; private set; } = GameState.GameStart;
-
+    public ScoreManager Score { get; set; }
     //  점수
-    private int score = 0;
-    private int fail = 0;
+
 
     private void Awake()
     {
@@ -24,46 +23,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void Start()
+    public void ChangeGameState(GameState newState)
     {
-        ChangeState(GameState.Preview);
-    }
+        State = newState;
 
-
-    public void AddScore()
-    {
-        score++;
-        Debug.Log($"점수: {score} 점");
-        CheckEndCondition();
-    }
-
-    public void FailAttempt()
-    {
-        fail++;
-        Debug.Log($"실패 : {fail} 번");
-        CheckEndCondition();
-    }
-
-    //  종료 조건 확인
-    private void CheckEndCondition()
-    {
-        if (score >= 3)
-        {
-            ChangeState(GameState.End);
-            Debug.Log("승리!");
-        }
-        else if (fail >= 3)
-        {
-            ChangeState(GameState.End);
-            Debug.Log("패배!");
-        }
-    }
-
-    public void ChangeState(GameState state)
-    {
-        State = state;
-
-        switch (state)
+        switch (newState)
         {
             case GameState.GameStart:
                 Debug.Log("게임 시작");
