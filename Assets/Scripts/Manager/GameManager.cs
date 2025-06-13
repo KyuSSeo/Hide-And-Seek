@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private GameObject xrPrefab;
+
+    private GameObject xrInstance;
 
     //  상태
     public GameState State { get; private set; } = GameState.GameStart;
@@ -10,6 +13,16 @@ public class GameManager : Singleton<GameManager>
     //  점수
     private int score = 0;
     private int fail = 0;
+
+    private void Awake()
+    {
+        SingletonInit();
+        if (xrInstance == null && xrPrefab != null)
+        {
+            xrInstance = Instantiate(xrPrefab);
+            DontDestroyOnLoad(xrInstance);
+        }
+    }
 
     private void Start()
     {
