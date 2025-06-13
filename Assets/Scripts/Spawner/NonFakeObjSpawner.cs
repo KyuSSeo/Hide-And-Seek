@@ -33,7 +33,7 @@ public class NonFakeObjSpawner : MonoBehaviour
     }
 
 
-    // 랜덤 위치 반환 (SpawnerArea 기준)
+    // 랜덤 위치 반환
     private Vector3 GetRandomPositionInArea()
     {
         Vector3 center = spawnerArea.bounds.center;
