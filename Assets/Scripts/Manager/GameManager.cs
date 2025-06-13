@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameState state = GameState.Preview;
+    public GameState state = GameState.GameStart;
 
     private int score = 0;
     private int fail = 0;
