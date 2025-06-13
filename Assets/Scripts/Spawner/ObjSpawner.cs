@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonFakeObjSpawner : MonoBehaviour
+public class ObjSpawner : MonoBehaviour
 {
     #region SerializeField
     [SerializeField] private GameObject nonFakeObjPrefab;
-    [SerializeField] private int _poolSize = 10;
+    [SerializeField] private int _poolSize = 15;
+    [SerializeField] private int _fakeObj = 3;
     [SerializeField] private BoxCollider spawnerArea;
     #endregion
 
@@ -19,13 +20,40 @@ public class NonFakeObjSpawner : MonoBehaviour
     }
     private void Start()
     {
-        SpawnAllNonFakeObjects();
+        GameManager.Instance.ChangeGameState(GameState.Preview);
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
     }
     private void OnDestroy()
     {
         _objectPool?.DestroyAll();
     }
     #endregion
+
+    private void HandleGameStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Preview:
+                SpawnObjects(isFake: false, count: _poolSize - _fakeObj);
+                break;
+
+            case GameState.Playing:
+                SpawnObjects(isFake: true, count: _fakeObj);
+                break;
+        }
+    }
+
+
 
     private void Init()
     {
@@ -48,9 +76,9 @@ public class NonFakeObjSpawner : MonoBehaviour
         return spawnPos;
     }
 
-    public void SpawnAllNonFakeObjects()
+    public void SpawnObjects(bool isFake, int count)
     {
-        for (int i = 0; i < _poolSize; i++)
+        for (int i = 0; i < count; i++)
         {
             GameObject obj = _objectPool.GetPooledObject();
             if (obj != null)
@@ -60,7 +88,7 @@ public class NonFakeObjSpawner : MonoBehaviour
 
                 FakeObject fake = obj.GetComponent<FakeObject>();
                 if (fake != null)
-                    fake.isFake = false;
+                    fake.isFake = isFake;
             }
         }
     }

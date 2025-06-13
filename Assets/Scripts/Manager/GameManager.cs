@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -8,6 +9,10 @@ public class GameManager : Singleton<GameManager>
     //  점수
     public ScoreManager Score { get; set; }
 
+
+    //  유니티 이벤트
+    public event Action<GameState> OnGameStateChanged;
+
     private void Awake()
     {
         SingletonInit();
@@ -15,6 +20,9 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeGameState(GameState newState)
     {
+        if (State == newState) 
+            return;
+
         State = newState;
 
         switch (newState)
@@ -35,5 +43,6 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log("게임 종료");
                 break;
         }
+        OnGameStateChanged?.Invoke(newState);
     }
 }
