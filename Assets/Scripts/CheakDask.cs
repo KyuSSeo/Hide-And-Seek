@@ -18,7 +18,7 @@ public class CheakDask : MonoBehaviour
                 Debug.Log("¿À´ä!");
             }
 
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 }

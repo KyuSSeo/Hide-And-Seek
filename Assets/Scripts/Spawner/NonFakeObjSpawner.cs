@@ -4,55 +4,61 @@ using UnityEngine;
 
 public class NonFakeObjSpawner : MonoBehaviour
 {
-    [SerializeField] public GameObject NonFakeObjPrefab;
-    [SerializeField] private BoxCollider SpawnerArea;
+    [SerializeField] private GameObject nonFakeObjPrefab;
+    [SerializeField] private int _poolSize = 10;
+    [SerializeField] private BoxCollider spawnerArea;
 
-    // 게임 메니저의 상태 State를 참조하여 상태에 따른 생성 시 프리팹 진위여부 결정
+    private ObjectPool _objectPool;
 
-
-    private void Awake() => Init();
+    private void Awake()
+    {
+        Init();
+    }
 
     private void Init()
     {
-        SpawnerArea = SpawnerArea.GetComponent<BoxCollider>();
+        if (spawnerArea == null)
+            spawnerArea = GetComponent<BoxCollider>();
+
+        _objectPool = new ObjectPool(_poolSize, nonFakeObjPrefab, gameObject);
     }
 
     private void Start()
     {
-        StartCoroutine(RandomRespawnCoroutine());
+        SpawnAllNonFakeObjects();
+    }
+    private void OnDestroy()
+    {
+        _objectPool?.DestroyAll();
     }
 
-    //  랜덤한 좌표를 반환하는 함수
-    private Vector3 SetRandomPos()
+
+    // 랜덤 위치 반환 (SpawnerArea 기준)
+    private Vector3 GetRandomPositionInArea()
     {
-        Vector3 pos = NonFakeObjPrefab.transform.position;
+        Vector3 center = spawnerArea.bounds.center;
+        Vector3 size = spawnerArea.bounds.size;
 
-        float range_x = SpawnerArea.bounds.size.x;
-        float range_z = SpawnerArea.bounds.size.z;
+        float randomX = Random.Range(-size.x / 2, size.x / 2);
+        float randomZ = Random.Range(-size.z / 2, size.z / 2);
 
-        range_x = Random.Range((range_x/2) * -1, range_x/2); 
-        range_z = Random.Range((range_z / 2) * -1, range_z / 2);
-
-        Vector3 randomPos = new Vector3(range_x, 1, range_z);
-
-        Vector3 SpawnPos = randomPos;
-        return SpawnPos;
+        Vector3 spawnPos = new Vector3(center.x + randomX, center.y + 1f, center.z + randomZ);
+        return spawnPos;
     }
 
-    //  코루틴으로 생성하는게 맞나?
-    private IEnumerator RandomRespawnCoroutine()
+    public void SpawnAllNonFakeObjects()
     {
-        
-        while (true)
+        for (int i = 0; i < _poolSize; i++)
         {
-            yield return new WaitForSeconds(1f);
-            Vector3 pos = SetRandomPos();
-            GameObject obj = Instantiate(NonFakeObjPrefab, pos, Quaternion.identity);
-
-            FakeObject fakeObj = obj.GetComponent<FakeObject>();
-            if (fakeObj != null)
+            GameObject obj = _objectPool.GetPooledObject();
+            if (obj != null)
             {
-                fakeObj.isFake = false;
+                obj.transform.position = GetRandomPositionInArea();
+                obj.SetActive(true);
+
+                FakeObject fake = obj.GetComponent<FakeObject>();
+                if (fake != null)
+                    fake.isFake = false;
             }
         }
     }

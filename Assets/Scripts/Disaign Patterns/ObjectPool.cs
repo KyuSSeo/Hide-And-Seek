@@ -23,20 +23,18 @@ public class ObjectPool
         {
             GameObject obj = MonoBehaviour.Instantiate(target, parent.transform);
             _pool[i] = obj;
-            _pool[i].SetActive(true);
+            _pool[i].SetActive(false);
         }
     }
 
-    public void Activate(bool select)
+    public GameObject GetPooledObject()
     {
-        foreach (var element in _pool)
+        foreach (var obj in _pool)
         {
-            if (element.activeSelf != select)
-            {
-                element.SetActive(select);
-                return;
-            }
+            if (!obj.activeSelf)
+                return obj;
         }
+        return null;
     }
 
     public void DestroyAll()
