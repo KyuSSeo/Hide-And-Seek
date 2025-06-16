@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObjSpawner : MonoBehaviour
 {
     #region SerializeField
-    [SerializeField] private GameObject nonFakeObjPrefab;
+    [SerializeField] private GameObject objPrefab;
+    [SerializeField] private List<GameObject> objectPrefabs;
     [SerializeField] private int _poolSize = 15;
     [SerializeField] private int _fakeObj = 3;
     [SerializeField] private BoxCollider spawnerArea;
@@ -60,7 +61,7 @@ public class ObjSpawner : MonoBehaviour
         if (spawnerArea == null)
             spawnerArea = GetComponent<BoxCollider>();
 
-        _objectPool = new ObjectPool(_poolSize, nonFakeObjPrefab, gameObject);
+        _objectPool = new ObjectPool(_poolSize, objPrefab, gameObject);
     }
 
     // 랜덤 위치 반환
@@ -76,6 +77,25 @@ public class ObjSpawner : MonoBehaviour
         return spawnPos;
     }
 
+
+    //  리스트 인스턴스 생성
+    public void SpawnObjects(bool isFake, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, objectPrefabs.Count);
+            GameObject prefab = objectPrefabs[randomIndex];
+
+            GameObject obj = Instantiate(prefab, GetRandomPositionInArea(), Quaternion.identity, transform);
+
+            FakeObject fake = obj.GetComponent<FakeObject>();
+            if (fake != null)
+                fake.isFake = isFake;
+        }
+    }
+
+    /*
+    // 단일 오브잭트 풀 생성
     public void SpawnObjects(bool isFake, int count)
     {
         for (int i = 0; i < count; i++)
@@ -92,4 +112,5 @@ public class ObjSpawner : MonoBehaviour
             }
         }
     }
+    */
 }
