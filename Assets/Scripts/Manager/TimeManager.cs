@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    //  티이머 UI
+    [SerializeField] private Timer timer;
     //  탐사시간
     [SerializeField] private float previewDuration = 10f;
     [SerializeField] private float playingDuration = 60f;
@@ -33,12 +35,26 @@ public class TimeManager : MonoBehaviour
             case GameState.Playing:
                 timerRoutine = StartCoroutine(StartTimer(playingDuration, GameState.End));
                 break;
+            default:
+                if (timer != null) timer.StopTimer();
+                break;
         }
     }
 
     private IEnumerator StartTimer(float duration, GameState nextState)
     {
         float remaining = duration;
+
+        if (timer != null)
+            timer.StartTimer(duration);
+
+        yield return new WaitForSeconds(duration);
+
+        if (timer != null)
+            timer.StopTimer();
+
+        GameManager.Instance.ChangeGameState(nextState);
+
 
         while (remaining > 0f)
         {
