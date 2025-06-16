@@ -6,6 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Score scoreUI;
+    [SerializeField] private Result resultUI;
 
     private int score = 0;
     private int fail = 0;
@@ -18,6 +19,7 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.ChangeGameState(GameState.Preview);
+        resultUI.HideResult();
         scoreUI.UpdateScore(score, fail);
     }
 
@@ -43,11 +45,13 @@ public class ScoreManager : MonoBehaviour
         {
             GameManager.Instance.ChangeGameState(GameState.End);
             Debug.Log("½Â¸®!");
+            resultUI.ShowResult(true);  
         }
         else if (fail >= 3)
         {
             GameManager.Instance.ChangeGameState(GameState.End);
             Debug.Log("ÆÐ¹è!");
+            resultUI.ShowResult(false);
         }
     }
 }

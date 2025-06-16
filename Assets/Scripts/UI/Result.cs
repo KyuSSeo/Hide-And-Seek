@@ -7,7 +7,7 @@ public class Result : MonoBehaviour
 
     public void ShowResult(bool result)
     {
-        resultText.text = result ? "½Â¸®" : "ÆÐ¹è";
+        resultText.text = result ? "Win" : "Lose";
         resultText.gameObject.SetActive(true);
     }
 
