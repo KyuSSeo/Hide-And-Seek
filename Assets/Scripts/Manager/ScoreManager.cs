@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] private Score scoreUI;
+
     private int score = 0;
     private int fail = 0;
 
@@ -15,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.ChangeGameState(GameState.Preview);
+        scoreUI.UpdateScore(score, fail);
     }
 
 
@@ -22,6 +26,7 @@ public class ScoreManager : MonoBehaviour
     {
         score++;
         Debug.Log($"점수: {score} 점");
+        scoreUI.UpdateScore(score, fail);
         CheckEndCondition();
     }
 
@@ -29,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     {
         fail++;
         Debug.Log($"실패 : {fail} 번");
+        scoreUI.UpdateScore(score, fail);
         CheckEndCondition();
     }
     private void CheckEndCondition()
