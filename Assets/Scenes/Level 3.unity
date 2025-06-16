@@ -499,11 +499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a1196840f345b4aa72338bf1630245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objPrefab: {fileID: 0}
+  objPrefab: {fileID: 4240184033476771005, guid: c8a88e3e6389eb748a88b1bd3a0fd0c1, type: 3}
   objectPrefabs:
-  - {fileID: 4586196803136469231, guid: 19e593fc0278b494db1747c92c565a91, type: 3}
-  - {fileID: 4240184033476771005, guid: c8a88e3e6389eb748a88b1bd3a0fd0c1, type: 3}
-  - {fileID: 4313187998927381140, guid: b9b211bff87ef8a4eaa1ab06449a243a, type: 3}
+  - {fileID: 5284406570180094706, guid: 1b2ec4e0358c2624ebb055f6afe3d06f, type: 3}
+  - {fileID: 3956864845004347026, guid: 1d6500eddaf6fac48bf20126bb1d2adb, type: 3}
+  - {fileID: 5734595923484152238, guid: cde310b8fc71a6c47abc2f832b0a5996, type: 3}
   _poolSize: 10
   _fakeObj: 3
   spawnerArea: {fileID: 1145379460}
