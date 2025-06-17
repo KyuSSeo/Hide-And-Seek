@@ -11,12 +11,7 @@ public class SelectStage : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(_stageName))
         {
-            Debug.Log("신 이동");
             SceneManager.LoadScene(_stageName);
-        }
-        else
-        {
-            Debug.Log("신 이동 불가");
         }
     }
 }

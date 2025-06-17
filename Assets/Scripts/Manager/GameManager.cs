@@ -30,25 +30,6 @@ public class GameManager : Singleton<GameManager>
             return;
 
         State = newState;
-
-        switch (newState)
-        {
-            case GameState.GameStart:
-                Debug.Log("게임 시작");
-                break;
-
-            case GameState.Preview:
-                Debug.Log("사전 탐색 시작");
-                break;
-
-            case GameState.Playing:
-                Debug.Log("탐색 시작");
-                break;
-
-            case GameState.End:
-                Debug.Log("게임 종료");
-                break;
-        }
         OnGameStateChanged?.Invoke(newState);
     }
 }

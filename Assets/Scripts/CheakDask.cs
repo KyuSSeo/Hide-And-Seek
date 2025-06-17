@@ -14,12 +14,10 @@ public class CheakDask : MonoBehaviour
         {
             if (fake.isFake)
             {
-                Debug.Log("정답!");
                 GameManager.Instance.Score.AddScore();
             }
             else
             {
-                Debug.Log("오답!");
                 GameManager.Instance.Score.FailAttempt();
             }
 

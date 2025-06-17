@@ -50,7 +50,6 @@ public class TimeManager : MonoBehaviour
 
         while (remaining > 0f)
         {
-            Debug.Log($"남은 시간: {remaining}초");
             yield return new WaitForSeconds(1f);
             remaining -= 1f;
         }

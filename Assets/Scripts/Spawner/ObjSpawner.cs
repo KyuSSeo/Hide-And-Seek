@@ -93,24 +93,4 @@ public class ObjSpawner : MonoBehaviour
                 fake.isFake = isFake;
         }
     }
-
-    /*
-    // 단일 오브잭트 풀 생성
-    public void SpawnObjects(bool isFake, int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            GameObject obj = _objectPool.GetPooledObject();
-            if (obj != null)
-            {
-                obj.transform.position = GetRandomPositionInArea();
-                obj.SetActive(true);
-
-                FakeObject fake = obj.GetComponent<FakeObject>();
-                if (fake != null)
-                    fake.isFake = isFake;
-            }
-        }
-    }
-    */
 }

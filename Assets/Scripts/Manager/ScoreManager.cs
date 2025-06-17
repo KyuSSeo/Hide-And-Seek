@@ -27,7 +27,6 @@ public class ScoreManager : MonoBehaviour
     public void AddScore()
     {
         score++;
-        Debug.Log($"점수: {score} 점");
         scoreUI.UpdateScore(score, fail);
         CheckEndCondition();
     }
@@ -35,7 +34,6 @@ public class ScoreManager : MonoBehaviour
     public void FailAttempt()
     {
         fail++;
-        Debug.Log($"실패 : {fail} 번");
         scoreUI.UpdateScore(score, fail);
         CheckEndCondition();
     }
@@ -45,7 +43,6 @@ public class ScoreManager : MonoBehaviour
             return;
 
         GameManager.Instance.ChangeGameState(GameState.End);
-        Debug.Log("시간 초과로 패배!");
         resultUI.ShowResult(false);
     }
 
@@ -57,13 +54,11 @@ public class ScoreManager : MonoBehaviour
         if (score >= 3)
         {
             GameManager.Instance.ChangeGameState(GameState.End);
-            Debug.Log("승리!");
             resultUI.ShowResult(true);  
         }
         else if (fail >= 3)
         {
             GameManager.Instance.ChangeGameState(GameState.End);
-            Debug.Log("패배!");
             resultUI.ShowResult(false);
         }
     }
