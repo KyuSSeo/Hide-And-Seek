@@ -21,7 +21,7 @@ public class TimeManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
-    }
+    }   
     private void OnGameStateChanged(GameState newState)
     {
         if (timerRoutine != null)
@@ -62,6 +62,18 @@ public class TimeManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             remaining -= 1f;
         }
-        GameManager.Instance.ChangeGameState(nextState);
+
+        //  시간 초과
+        if (timer != null)
+            timer.StopTimer();
+
+        if (nextState == GameState.End)
+        {
+            GameManager.Instance.Score.TimeOver();
+        }
+        else
+        {
+            GameManager.Instance.ChangeGameState(nextState);
+        }
     }
 }

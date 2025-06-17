@@ -39,8 +39,20 @@ public class ScoreManager : MonoBehaviour
         scoreUI.UpdateScore(score, fail);
         CheckEndCondition();
     }
+    public void TimeOver()
+    {
+        if (GameManager.Instance.State == GameState.End)
+            return;
+        GameManager.Instance.ChangeGameState(GameState.End);
+        Debug.Log("시간 초과로 패배!");
+        resultUI.ShowResult(false);
+    }
+
     private void CheckEndCondition()
     {
+        if (GameManager.Instance.State == GameState.End)
+            return;
+
         if (score >= 3)
         {
             GameManager.Instance.ChangeGameState(GameState.End);
