@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -12,12 +13,17 @@ public class GameManager : Singleton<GameManager>
 
     //  유니티 이벤트
     public event Action<GameState> OnGameStateChanged;
+    public event Action<ButtonType> OnBtnClick;
 
     private void Awake()
     {
         SingletonInit();
     }
 
+    public void BtnClick(ButtonType button)
+    {
+        OnBtnClick?.Invoke(button);
+    }
     public void ChangeGameState(GameState newState)
     {
         if (State == newState) 

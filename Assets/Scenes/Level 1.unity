@@ -639,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682459069}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 722240733}
   - component: {fileID: 722240732}
   - component: {fileID: 722240735}
+  - component: {fileID: 722240736}
   m_Layer: 5
   m_Name: Title Button
   m_TagString: Untagged
@@ -943,6 +944,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageName: IntroScene
+--- !u!114 &722240736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722240730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &743041347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1103,8 @@ GameObject:
   m_Component:
   - component: {fileID: 822629225}
   - component: {fileID: 822629226}
-  m_Layer: 0
+  - component: {fileID: 822629227}
+  m_Layer: 5
   m_Name: Restart Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,6 +1139,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6049afa4d8b254e47844037f7fc2d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &822629227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822629224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &916555914
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2544,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2143608897}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 822629226}
+        m_TargetAssemblyTypeName: RestartButton, Assembly-CSharp
+        m_MethodName: OnRestartClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2143608897
 MonoBehaviour:
   m_ObjectHideFlags: 0

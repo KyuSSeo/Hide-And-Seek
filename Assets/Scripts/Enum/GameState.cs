@@ -9,3 +9,12 @@ public enum GameState
     Playing,    // 게임 시작 후 가짜 오브젝트 찾는 시간
     End         // 게임 종료 상태
 }
+
+public enum ButtonType
+{
+    Restart,    // 재시작
+    Title,      // 타이틀
+    Pause,      // 일시정지
+    Quit,       // 종료
+    Menu        // 메뉴
+}

@@ -1640,6 +1640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultText: {fileID: 703038356}
+  restartButton: {fileID: 0}
+  titleButton: {fileID: 0}
 --- !u!224 &1624113225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1668,6 +1670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2840818338175998187, guid: 37d005f4a9a15de4cb5f7030986bc742, type: 3}
+      propertyPath: m_StartingHoverFilters.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3849390195480611698, guid: 37d005f4a9a15de4cb5f7030986bc742, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1711,6 +1717,14 @@ PrefabInstance:
     - target: {fileID: 7598734299694555884, guid: 37d005f4a9a15de4cb5f7030986bc742, type: 3}
       propertyPath: m_Name
       value: XR Interaction Setup Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165042098275760010, guid: 37d005f4a9a15de4cb5f7030986bc742, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279408269858515713, guid: 37d005f4a9a15de4cb5f7030986bc742, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
