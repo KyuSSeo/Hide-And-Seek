@@ -1264,6 +1264,7 @@ GameObject:
   - component: {fileID: 722240732}
   - component: {fileID: 722240735}
   - component: {fileID: 722240736}
+  - component: {fileID: 722240737}
   m_Layer: 5
   m_Name: Title Button
   m_TagString: Untagged
@@ -1413,6 +1414,24 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &722240737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722240730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df61a9a13528fd4f9365c233cb23bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RaycastTriggerInteraction: 1
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 10
+  m_EventCamera: {fileID: 0}
 --- !u!1 &743041347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1762,6 @@ GameObject:
   m_Component:
   - component: {fileID: 822629225}
   - component: {fileID: 822629226}
-  - component: {fileID: 822629227}
   m_Layer: 5
   m_Name: Restart Btn
   m_TagString: Untagged
@@ -1779,21 +1797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6049afa4d8b254e47844037f7fc2d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &822629227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822629224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!1001 &882912534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4321,6 +4324,7 @@ GameObject:
   - component: {fileID: 2143608898}
   - component: {fileID: 2143608897}
   - component: {fileID: 2143608896}
+  - component: {fileID: 2143608899}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -4442,6 +4446,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143608894}
   m_CullTransparentMesh: 1
+--- !u!114 &2143608899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143608894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
