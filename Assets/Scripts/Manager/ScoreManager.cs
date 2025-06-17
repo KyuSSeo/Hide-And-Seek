@@ -43,6 +43,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (GameManager.Instance.State == GameState.End)
             return;
+
         GameManager.Instance.ChangeGameState(GameState.End);
         Debug.Log("시간 초과로 패배!");
         resultUI.ShowResult(false);

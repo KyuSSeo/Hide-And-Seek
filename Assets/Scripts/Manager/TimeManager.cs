@@ -48,14 +48,6 @@ public class TimeManager : MonoBehaviour
         if (timer != null)
             timer.StartTimer(duration);
 
-        yield return new WaitForSeconds(duration);
-
-        if (timer != null)
-            timer.StopTimer();
-
-        GameManager.Instance.ChangeGameState(nextState);
-
-
         while (remaining > 0f)
         {
             Debug.Log($"남은 시간: {remaining}초");
@@ -63,7 +55,6 @@ public class TimeManager : MonoBehaviour
             remaining -= 1f;
         }
 
-        //  시간 초과
         if (timer != null)
             timer.StopTimer();
 
